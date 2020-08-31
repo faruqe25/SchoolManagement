@@ -1,0 +1,102 @@
+﻿@model SchoolManagement.Areas.Admin.ViewModels.TEnrolledSubjectVm
+
+
+
+    @if (ViewBag.MSG != null)
+    {
+        <div class="alert alert-danger">@ViewBag.MSG
+       </div>
+    }
+    
+        <form asp-controller="Home" asp-area="Admin" asp-action="SubjectAssignToTeacher" method="post" style="margin-top:20px;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;">
+            <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Teacher wise Subject Distribution</h1>
+            <hr style="width:70%;" />
+            @*row 1*@
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
+                    <div class="form-group">
+                        <label>Select Teacher</label>
+                        <select class="form-control" asp-for="tcridVM" asp-items="@ViewBag.Teacher">
+                            <option  hidden disabled selected>Please Select Teacher</option>
+                        </select>
+                        <span asp-validation-for="tcridVM" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <label>Select CLass</label>
+                        <select class="form-control" asp-items="@ViewBag.Class" asp-for="clsidVM" id="class">
+                            <option hidden disabled selected>Please Select Class</option>
+                        </select>
+                        <span asp-validation-for="clsidVM" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            @*row 2*@
+
+
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
+                    <div class="form-group">
+                        <label>Select Section</label>
+                        <select class="form-control" id="section" asp-for="secidVM"></select>
+                        <span asp-validation-for="secidVM" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <label>Select Subject</label>
+                        <select class="form-control" asp-for="sbjctidVM" asp-items="@ViewBag.Subject">
+                            <option hidden disabled selected> Please Select Subject  </option>
+                        </select>
+                        <span asp-validation-for="sbjctidVM" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            @*row 3*@
+            <div class="row" style="padding:10px;">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+                    <button class="btn btn-primary" type="submit" style="float:right;">Submit</button>
+                </div>
+            </div>
+        </form>
+    
+
+
+@section Scripts{
+
+
+    <script type="text/javascript">
+
+        //insert the default value to the section
+
+        $(document).ready(function () {
+            var items = "<option hidden disabled selected> Please Select Class for Section Name</option>";
+            $("#section").html(items);
+        });
+        //Set the section to select list according to class
+        $("#class").change(function () {
+            if ($("#class").val() == 0) {
+                var items = "<option value='0'> Please Select Section Name</option>";
+                $("#section").html(items);
+            }
+            else {
+                var classid = $("#class").val();
+                var url = "/Admin/Home/VerifyClassForSection";
+                $.getJSON(url,{id:classid},function (data){
+                    var items = "<option hidden disabled selected>Please Select Section Name </option>";
+                    $("#section").empty();
+                    $.each(data, function (i, sec) {
+                        items += '<option value="' + sec.value + ' ">' + sec.text + '</option > ';
+                    });
+                    $("#section").html(items);
+                });
+
+            }
+        });
+
+    </script>
+
+
+}

@@ -1,0 +1,200 @@
+﻿@model SchoolManagement.Areas.AdmissionOfficer.ViewModels.TeacherVm
+
+
+    <div class="jumbotron" style="overflow-x:auto;margin-top:20px;margin-left:10%; background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;width:80%;">
+        <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Teacher's Details</h1>
+        <hr style="width:90%;" />
+
+
+
+        <h3 style="text-align:center;font-family:'Century Gothic';font-style:italic;">Teacher's Information</h3>
+        <hr style="width:50%;font-weight:bolder;text-align:left;" />
+        <div class="row" style="margin-top:30px;">
+
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <table class="table table-responsive">
+                    <tbody>
+
+                        <tr>
+                            <td>Teacher's Name:</td>
+                            <td>@Model.TcrnameVM</td>
+                        </tr>
+                        <tr>
+                            <td>Designation:</td>
+                            <td>@Model.TcrdesigVM</td>
+                        </tr>
+                        <tr>
+                            <td>Nationality:</td>
+                            <td>@Model.TcrnationVM</td>
+                        </tr>
+                        <tr>
+                            <td>Gender:</td>
+                            <td>@Model.TcrgenderVM</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth:</td>
+                            <td>@Model.TcrdobVM</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Group:</td>
+                            <td>@Model.TcrbgVM</td>
+                        </tr>
+                        <tr>
+                            <td>Contact:</td>
+                            <td>@Model.TcrphoneVM</td>
+                        </tr>
+                        <tr>
+                            <td>E-mail Address:</td>
+                            <td>@Model.TcremailVM</td>
+                        </tr>
+                        <tr>
+                            <td>Current Address:</td>
+                            <td>@Model.TcrcaddrssVM</td>
+                        </tr>
+                        <tr>
+                            <td>Permanent Address:</td>
+                            <td>@Model.TcrpaddrssVM</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img src="~/images/@Model.TcrphotoVM" alt="Teacher's Photo" style="float:left;height:auto;max-width:100%;border-radius:5px 5px;box-shadow:0 5px 20px #686868;" class="img-responsive" asp-append-version="true" />
+
+            </div>
+        </div>
+
+
+
+
+        <h3 style="text-align:center;font-family:'Century Gothic';font-style:italic;">About Teacher's Qualification</h3>
+        <hr style="width:50%;font-weight:bolder;text-align:left;" />
+        <div class="row" style="margin-top:30px;">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <table class="table table-responsive">
+                    <tbody>
+
+                        <tr>
+                            <td>Insitution of SSC:</td>
+                            <td>@Model.TcrqsscinsVM</td>
+                        </tr>
+                        <tr>
+                            <td>SSC Passing Year:</td>
+                            <td>@Model.TcrqsscyearVM</td>
+                        </tr>
+                        <tr>
+                            <td>GPA of SSC:</td>
+                            <td>@Model.TcrqsscgradeVM</td>
+                        </tr>
+                        <tr>
+                            <td>Insitution of HSC:</td>
+                            <td>@Model.TcrqhscinsVM</td>
+                        </tr>
+                        <tr>
+                            <td>HSC Passing Year:</td>
+                            <td>@Model.TcrqhscyearVM</td>
+                        </tr>
+                        <tr>
+                            <td>GPA of HSC:</td>
+                            <td>@Model.TcrqhscgradeVM</td>
+                        </tr>
+                        <tr>
+                            <td>Insitution of Hons:</td>
+                            <td>@Model.TcrqhonsinsVM</td>
+                        </tr>
+                        <tr>
+                            <td>Hons Passing Year:</td>
+                            <td>@Model.TcrqhonsyearVM</td>
+                        </tr>
+                        <tr>
+                            <td>GPA of Hons:</td>
+                            <td>@Model.TcrqhonsgradeVM</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3 style="text-align:center;font-family:'Century Gothic';font-style:italic;">About Teacher's Documents</h3>
+        <hr style="width:50%;font-weight:bolder;text-align:left;" />
+        <div class="row" style="margin-top:30px;">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <table class="table table-responsive">
+                    <tbody>
+
+                        <tr>
+                            <td>Certificate of SSC:</td>
+                            @if (Model.TcrdocsubssccrtfctVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>Marksheet SSC:</td>
+                            @if (Model.TcrdocsubsscmarkVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Certificate of HSC:</td>
+                            @if (Model.TcrdocsubhsccrtfctVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Maksheet of HSC:</td>
+                            @if (Model.TcrdocsubhscmarkVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Marksheet Hons:</td>
+                            @if (Model.TcrdocsubhonsmarkVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Certificate of Hons:</td>
+                            @if (Model.TcrdocsubhonscrtfctVM == true)
+                            {
+                                <td>Submitted</td>
+                            }
+                            else
+                            {
+                                <td>Not Submitted</td>
+                            }
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

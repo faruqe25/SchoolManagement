@@ -1,0 +1,274 @@
+﻿@model List<SchoolManagement.Areas.Students.ViewModels.StudentResult>
+<style>
+
+    ul.nav.nav-tabs li a {
+        padding: 5px;
+        background: #e1e1e1;
+        border-top-left-radius: 10px;
+        margin: 0 1px 0;
+        border-top-right-radius: 10px;
+        text-align: center;
+        display: block;
+        height: 50px;
+        text-decoration: none;
+        color: black
+    }
+
+        ul.nav.nav-tabs li a:hover {
+            color: inherit
+        }
+
+        ul.nav.nav-tabs li a:active {
+            color: red
+        }
+</style>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs row" role="tablist">
+        <li role="presentation" class="col-md-3 col-lg-3 col-sm-3 col-xs-6 h4 "><a href="#FirstTerm" aria-controls="FirstTerm" role="tab" data-toggle="tab">First Term</a></li>
+        <li role="presentation" class="col-md-3 col-lg-3 col-sm-3 col-xs-6 h4"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Mid term</a></li>
+        <li role="presentation" class="col-md-3 col-lg-3 col-sm-3 col-xs-6 h4"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Final Term</a></li>
+        <li role="presentation" class="col-md-3 col-lg-3 col-sm-3 col-xs-6 h4"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Final Result</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active  " id="FirstTerm" style="overflow-x:auto;">
+            @if (Model.Any(s => s.ExamType == 1))
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Subject</th>
+                            <th>Mark</th>
+                            <th>Class Test</th>
+                            <th>Total</th>
+                            <th>Section</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var c = 1; }
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.ExamType == 1)
+                            {
+                                <tr>
+                                    <td>
+                                        @c
+
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.Mark
+                                    </td>
+                                    <td>
+                                        @item.ClassTest
+                                    </td>
+                                    <td>
+                                        @{var i = item.Mark + item.ClassTest;}
+                                        @i
+                                    </td>
+                                    <td>
+                                        @item.Section
+                                    </td>
+                                </tr>
+                            }
+                            c = c + 1;
+                        }
+
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1 class="text-danger">
+                    Result has not pulished yet.
+                </h1>
+            }
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+            @if (Model.Any(s => s.ExamType == 2))
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Subject</th>
+                            <th>Mark</th>
+                            <th>Class Test</th>
+                            <th>Total</th>
+                            <th>Section</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var d = 1; }
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.ExamType == 2)
+                            {
+                                <tr>
+                                    <td>
+                                        @d
+
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.Mark
+                                    </td>
+                                    <td>
+                                        @item.ClassTest
+                                    </td>
+                                    <td>
+                                        @{var i = item.Mark + item.ClassTest;}
+                                        @i
+                                    </td>
+                                    <td>
+                                        @item.Section
+                                    </td>
+                                </tr>
+                                d = d + 1;
+                            }
+
+                        }
+
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1 class="text-danger">
+                    Result has not pulished yet.
+                </h1>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="messages">
+            @if (Model.Any(s => s.ExamType == 3))
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Subject</th>
+                            <th>Mark</th>
+                            <th>Class Test</th>
+                            <th>Total</th>
+                            <th>Section</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var e = 1; }
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.ExamType == 3)
+                            {
+                                <tr>
+                                    <td>
+                                        @e
+
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.Mark
+                                    </td>
+                                    <td>
+                                        @item.ClassTest
+                                    </td>
+                                    <td>
+                                        @{var i = item.Mark + item.ClassTest;}
+                                        @i
+                                    </td>
+                                    <td>
+                                        @item.Section
+                                    </td>
+                                </tr>
+                                e = e + 1;
+                            }
+
+                        }
+
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1 class="text-danger">
+                    Result has not pulished yet.
+                </h1>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">
+
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>Subject</th>
+                        <th>First Term</th>
+                        <th>Mid Term </th>
+                        <th>Final Term</th>
+                        <th>Final Result</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{ int[] Bangla = { 1, 2, 3 };}
+                    <tr>
+                        @foreach (var item in Bangla)
+                        {
+                            <td>@item</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts
+{
+    <script>
+
+        $(document).ready(function () {
+           
+
+            
+
+
+        });
+       
+    </script>
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,156 @@
+﻿@model SchoolManagement.Areas.AdmissionOfficer.ViewModels.StudentVm
+
+
+
+    @*Student Details*@
+
+
+    <div class="jumbotron" style="margin-top:20px;margin-left:10%; background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;width:80%;">
+        <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Student's Details</h1>
+        <hr style="width:90%;" />
+
+
+
+
+        <h3 style="text-align:center;font-family:'Century Gothic';font-style:italic;">Student's Information</h3>
+        <hr style="width:50%;font-weight:bolder;text-align:left;" />
+        <div class="row" style="margin-top:30px;">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <table class="table table-responsive">
+                    <tbody>
+
+                        <tr>
+                            <td>Name:</td>
+                            <td>@Model.stdntnameVM</td>
+                        </tr>
+                        <tr>
+                            <td>Class:</td>
+                            <td>@Model.stdntclsNameVM</td>
+                        </tr>
+                        <tr>
+                            <td>Section:</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>Roll No:</td>
+                            <td>01</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth:</td>
+                            <td>@Model.dobVM</td>
+                        </tr>
+                        <tr>
+                            <td>Nationality:</td>
+                            <td>@Model.stdntnationVM</td>
+                        </tr>
+                        <tr>
+                            <td>Gender:</td>
+                            <td>@Model.stdntgenderVM</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Group:</td>
+                            <td>@Model.stdntbgVM</td>
+                        </tr>
+
+                        <tr>
+                            <td>Date of Admission:</td>
+                            <td>@Model.stdntdoaVM</td>
+                        </tr>
+                        <tr>
+                            <td>Year of Admission:</td>
+                            <td>@Model.stdntyearVM</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                @{
+                    var imageSource = "~/images/" + (Model.stdntphotoVM ?? "NoImage.png");
+                }
+                <img src="@imageSource" alt="Student's Photo" style="float:left;height:auto;width:200px;height:200px;border-radius:5px 5px;box-shadow:0 5px 20px #686868;" class="img-responsive" asp-append-version="true" />
+
+            </div>
+        </div>
+
+
+
+        <h3 style="text-align:center;font-family:'Century Gothic';font-style:italic;">Guardian's Information</h3>
+        <hr style="width:50%;font-weight:bolder;text-align:left;" />
+        <div class="row" style="margin-top:30px;">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <table class="table table-responsive">
+                    <tbody>
+
+                        <tr>
+                            <td>Father's Name:</td>
+                            <td>@Model.gnameFVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's Name:</td>
+                            <td>@Model.gnameMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Father's Occupation:</td>
+                            <td>@Model.goccupationFVM</td>
+                        </tr>
+                        <tr>
+                            <td>Father's Organization:</td>
+                            <td>@Model.gorganisationFVM</td>
+                        </tr>
+                        <tr>
+                            <td>Father's Designation:</td>
+                            <td>@Model.gdesignationFVM</td>
+                        </tr>
+                        <tr>
+                            <td>Father's E-mail Address:</td>
+                            <td>@Model.gemailMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Father's Phone/Mobile No:</td>
+                            <td>@Model.gphoneFVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's Occupation:</td>
+                            <td>@Model.goccupationMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's Organization:</td>
+                            <td>@Model.gorganisationMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's Designation:</td>
+                            <td>@Model.gdesignationsMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's E-mail Address:</td>
+                            <td>@Model.gemailMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Mother's Phone/Mobile No:</td>
+                            <td>@Model.gphoneMVM</td>
+                        </tr>
+                        <tr>
+                            <td>Current Address:</td>
+                            <td>@Model.stdntcaddrssVM</td>
+                        </tr>
+                        <tr>
+                            <td>Permanent Address:</td>
+                            <td>@Model.stdntpaddrssVM</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+

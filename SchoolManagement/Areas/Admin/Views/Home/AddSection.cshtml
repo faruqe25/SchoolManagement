@@ -1,0 +1,32 @@
+﻿
+@model SchoolManagement.Areas.Admin.ViewModels.SectionVm
+
+@if (ViewBag.SMS != null)
+{
+    <div class="alert alert-danger">@ViewBag.SMS</div>
+}
+<form style="margin-top:5%;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-area="Admin" asp-controller="Home" asp-action="AddSection" method="post">
+    <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Add New Section</h1>
+    <hr style="width:70%;" />
+
+    <div class="row" style="padding:10px;">
+        @*row 1*@
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+            <div class="form-group">
+                <label for="exmtype">Enter Section Name:</label>
+                <input type="text" class="form-control" placeholder="Class Name" asp-for="SectionName" />
+                <span class="text-danger" asp-validation-for="SectionName "></span>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:10px;">
+        @*row 2*@
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+            <button class="btn btn-primary" type="submit" style="float:right;">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+
+

@@ -1,0 +1,102 @@
+﻿@model List<SchoolManagement.Areas.Teachers.ViewModels.StdntAttndncVm>
+SEC:@ViewBag.SectionName
+Class: @ViewBag.ClassName
+
+    <form style="margin-top:20px;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-action="ConfirmAttendance" asp-controller="Home" asp-area="Teachers" method="post">
+        <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Class Attendance</h1>
+        <hr style="width:70%;" />
+        <div class="row">
+            @*row 1*@
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3">Sl No.</th>
+                            <th class="col-md-3">Roll No.</th>
+                            <th class="col-md-3">Name</th>
+                            <th class="col-md-3">Status</th>
+                            <th class="col-md-3">Remark</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+
+                            <tr>
+
+                                <td>@Model[i].stdntattserialnoVM</td>
+                                <td>@Model[i].stdntidVM</td>
+                                <td>@Model[i].Name</td>
+                                <td>
+                                    <select asp-for="@Model[i].Status" class="form-control" style="width:100px;">
+                                        <option value="1">Present</option>
+                                        <option value="0">Absent</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model[i].Remark" type="text" placeholder="Delay time " class="form-control" style="width:150px;" />
+
+                                    <input asp-for="@Model[i].clsidVM" type="hidden" />
+                                    <input asp-for="@Model[i].SecId" type="hidden" />
+                                    <input asp-for="@Model[i].sbjctidVM" type="hidden" />
+                                    <input asp-for="@Model[i].stdntidVM" type="hidden" />
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr style="width:90%;" />
+
+        <div class="row" style="padding:10px;">
+            @*row 2*@
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2" style="float:right;">
+                <p style="float:right;">Total Students:@Model.Count()</p>
+
+                <p style="float:right;clear:both;" id="PSt"></p>
+                <p style="float:right;clear:both;" id="ASt"></p>
+            </div>
+        </div>
+
+        <div class="row" style="padding:10px;">
+            @*row 3*@
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+                <button class="btn btn-primary" type="submit" style="float:right;">Submit</button>
+            </div>
+        </div>
+    </form>
+
+
+
+@section Scripts{
+
+    <script>
+    var s = 0;
+    $(document).ready(function () {
+        $("select option:selected").each(function () {
+            var str = $(this).val();
+            s = Number(s) + Number(str)
+        });
+        $("#PSt").text("Present Students: " + s);
+        $("#ASt").text("Present Students: 0");
+    });
+    $("select").change(function () {
+        var p = 0;
+        var i = 0;
+        $("select option:selected").each(function () {
+            var str = $(this).val();
+            p = Number(p) + Number(str);
+            i = s - p;
+        });
+        $("#PSt").text("Present Students: "+p);
+        $("#ASt").text("Absent Students: "+i);
+    })
+
+
+    </script>
+
+}

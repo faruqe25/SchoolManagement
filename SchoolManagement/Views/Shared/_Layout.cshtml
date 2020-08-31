@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SchoolManagement</title>
+
+    @*<link href="~/LayoutAssets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />*@
+
+    <environment include="Development">
+        <link href="~/LayoutAssets/vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+        @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
+
+        <link href="~/LayoutAssets/vendors/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/css/main.min.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+              asp-fallback-href="~/LayoutAssets/vendors/fontawesome-free-5.10.2-web/css/all.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="~/LayoutAssets/vendors/fontawesome-free-5.10.2-web/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/LayoutAssets/vendors/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link rel="stylesheet" href="~/LayoutAssets/vendors/bootstrap/dist/css/bootstrap.min.css" />
+
+        @*<link href="~/LayoutAssets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+        <link href="~/LayoutAssets/vendors/line-awesome/css/line-awesome.min.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+        <link href="~/LayoutAssets/css/main.min.css" rel="stylesheet" />
+
+    </environment>
+
+
+</head>
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <header class="header">
+            <div class="page-brand">
+                <a href="index-2.html">
+                    <span class="brand">Admin Panel</span>
+                    <span class="brand-mini">AD</span>
+                </a>
+            </div>
+            <div class="flexbox flex-1" style="background-color: #F2F3FA;">
+                <!-- START TOP-LEFT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                    <li>
+                        <a class="nav-link sidebar-toggler js-sidebar-toggler" href="javascript:;">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                    </li>
+                   
+                </ul>
+                <!-- END TOP-LEFT TOOLBAR-->
+                <!-- START TOP-RIGHT TOOLBAR-->
+                <ul class="nav navbar-toolbar">
+                   
+
+
+                    <li class="dropdown dropdown-user">
+                        <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+                            <span>Super User</span>
+                            <img src="~/LayoutAssets/img/users/admin-image.png" alt="image" />
+                        </a>
+
+
+
+                    </li>
+                    
+                </ul>
+                <!-- END TOP-RIGHT TOOLBAR-->
+            </div>
+        </header>
+        <!-- END HEADER-->
+        <!-- START SIDEBAR-->
+        <nav class="page-sidebar" id="sidebar">
+            <div id="sidebar-collapse">
+                <ul class="side-menu metismenu">
+                    <li class="active">
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-home"></i>
+                            <span class="nav-label">Dashboards</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        
+                    </li>
+                    <li class="heading">FEATURES</li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-paint-roller"></i>
+                            <span class="nav-label">Class Management</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-area="Admin" asp-action="AddClass" asp-controller="Home">Add Class</a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Home" asp-action="ClassList">Class List</a>
+                            </li>
+                            <li>
+                                <a href="panels.html">Panels</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Section Management</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="AddSection">Add Section</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SectionList">Section List</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SectionCapacity">Add Section Capacity</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SectionCapacityList">Section Capacity</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Class Wise Teacher</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SubjectAssignToTeacher">Subject Assign</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="ListAssignedSubject">Subject Assign List</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SectionCapacity">Add Section Capacity</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="SectionCapacityList">Section Capacity</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="alerts.html">Alerts</a>
+                            </li>
+                            <li>
+                                <a href="tooltip_popover.html">Tooltip &amp; Popover</a>
+                            </li>
+                            <li>
+                                <a href="badges_progress.html">Badges &amp; Progress</a>
+                            </li>
+                            <li>
+                                <a href="lists.html">List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-book"></i>
+                            <span class="nav-label">Subject Management</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-action="AddSubject" asp-area="Admin" asp-controller="Home">Add Subject</a>
+                            </li>
+                            <li>
+                                <a asp-action="SubjectList" asp-area="Admin" asp-controller="Home">Subject List</a>
+                            </li>
+                            <li>
+                                <a href="alertify.html">Alertify</a>
+                            </li>
+                            <li>
+                                <a href="idle_timer.html">Idle timer</a>
+                            </li>
+                            <li>
+                                <a href="session_timeout.html">Session Timeout</a>
+                            </li>
+                            <li>
+                                <a href="code_editor.html">Code Editor</a>
+                            </li>
+                            <li>
+                                <a href="tree_view.html">Tree View</a>
+                            </li>
+                            <li>
+                                <a href="nestable.html">Nestable List</a>
+                            </li>
+                            <li>
+                                <a href="clipboard.html">Clipboard</a>
+                            </li>
+                            <li>
+                                <a href="masonry.html">Masonry</a>
+                            </li>
+                            <li>
+                                <a href="pdf_viewer.html">PDF viewer</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-book"></i>
+                            <span class="nav-label">Exam Management</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-action="AddExamType" asp-area="Admin" asp-controller="Home">Add Exam Type</a>
+                            </li>
+                            <li>
+                                <a asp-action="ExamTypeList" asp-area="Admin" asp-controller="Home">Exam Type List</a>
+                            </li>
+                            <li>
+                                <a href="alertify.html">Alertify</a>
+                            </li>
+                            <li>
+                                <a href="idle_timer.html">Idle timer</a>
+                            </li>
+                            <li>
+                                <a href="session_timeout.html">Session Timeout</a>
+                            </li>
+                            <li>
+                                <a href="code_editor.html">Code Editor</a>
+                            </li>
+                            <li>
+                                <a href="tree_view.html">Tree View</a>
+                            </li>
+                            <li>
+                                <a href="nestable.html">Nestable List</a>
+                            </li>
+                            <li>
+                                <a href="clipboard.html">Clipboard</a>
+                            </li>
+                            <li>
+                                <a href="masonry.html">Masonry</a>
+                            </li>
+                            <li>
+                                <a href="pdf_viewer.html">PDF viewer</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @*Addmission Officer*@
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-heart"></i>
+                            <span class="nav-label">Teacher Management</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Base Buttons</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a href="buttons-default.html">Default style</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons-rounded.html">Rounded style</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons-square.html">Square style</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons-air.html">Air style</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a asp-area="AdmissionOfficer" asp-controller="Home" asp-action="AddTeacher">Add Teacher</a>
+                            </li>
+                            <li>
+                                <a asp-area="AdmissionOfficer" asp-controller="Home" asp-action="TeacherList">Teacher List</a>
+                            </li>
+                            <li>
+                                <a href="button-animated.html">Animated buttons</a>
+                            </li>
+                            <li>
+                                <a href="buttons-fab.html">FAB buttons</a>
+                            </li>
+                            <li>
+                                <a href="button-groups.html">Button Groups</a>
+                            </li>
+                            <li>
+                                <a href="button-dropdowns.html">Button dropdowns</a>
+                            </li>
+                            <li>
+                                <a href="buttons-social.html">Social Buttons</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-layers-alt"></i>
+                            <span class="nav-label">Student Management</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-area="AdmissionOfficer" asp-controller="Home" asp-action="AddStudent">Add new student</a>
+                            </li>
+                            <li>
+                                <a asp-area="AdmissionOfficer" asp-controller="Home" asp-action="StudentList">Student List</a>
+                            </li>
+                            <li>
+                                <a href="widgets-user.html">User Widgets</a>
+                            </li>
+                            <li>
+                                <a href="widgets-blog.html">Blog Widgets</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @*Teacher Panel*@
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-check-box"></i>
+                            <span class="nav-label">Attendance Panel</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Form Controls</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a href="form-controls.html">Inputs</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-switch.html">Switch</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-checkbox-radio.html">Checkbox &amp; Radio</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-input-groups.html">Input Groups</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a asp-area="Teachers" asp-action="TakeAttendance" asp-controller="Home">Take Attendance</a>
+                            </li>
+                            <li>
+                                <a asp-area="Teachers" asp-action="AttendanceDetails" asp-controller="Home">Attendance Details</a>
+                            </li>
+                            <li>
+                                <a href="form_masks.html">Form input masks</a>
+                            </li>
+                            <li>
+                                <a href="form_validation.html">Form Validation</a>
+                            </li>
+                            <li>
+                                <a href="text_editors.html">Text Editors</a>
+                            </li>
+                            <li>
+                                <a href="form_dropzone.html">Dropzone File Upload</a>
+                            </li>
+                            <li>
+                                <a href="image_cropping.html">Image Cropping</a>
+                            </li>
+                            <li>
+                                <a href="autocomplete.html">Autocomplete</a>
+                            </li>
+                            <li>
+                                <a href="form_wizard.html">Form Wizard</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-layout-tab-window"></i>
+                            <span class="nav-label">Exam Marks</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-area="Teachers" asp-controller="Home" asp-action="MarkSubmission">Mark Submission</a>
+                            </li>
+                            <li>
+                                <a href="datatables.html">Datatables</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @*Stduent Panel*@
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-bar-chart"></i>
+                            <span class="nav-label">Result</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a asp-area="Students" asp-controller="Home" asp-action="Result">Result</a>
+                            </li>
+                            <li>
+                                <a href="charts_morris.html">Morris Charts</a>
+                            </li>
+                            <li>
+                                <a href="chartjs.html">Chart.js</a>
+                            </li>
+                            <li>
+                                <a href="c3.html">C3 Charts</a>
+                            </li>
+                            <li>
+                                <a href="charts_peity.html">Peity Charts</a>
+                            </li>
+                            <li>
+                                <a href="charts_sparkline.html">Sparkline Charts</a>
+                            </li>
+                            <li>
+                                <a href="charts_rickshaw.html">Rickshaw Charts</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-map-alt"></i>
+                            <span class="nav-label">Attendance</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="maps_google.html">Google maps</a>
+                            </li>
+                            <li>
+                                <a href="datamaps.html">Datamaps</a>
+                            </li>
+                            <li>
+                                <a href="maps_vector.html">Vector maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="icons.html">
+                            <i class="sidebar-item-icon ti-comments-smiley"></i>
+                            <span class="nav-label">Icons</span>
+                        </a>
+                    </li>
+                    <li class="heading">PAGES</li>
+                    <li>
+                        <a href="mailbox.html">
+                            <i class="sidebar-item-icon ti-email"></i>
+                            <span class="nav-label">Mailbox</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-pencil"></i>
+                            <span class="nav-label">Profile</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="blog_list.html">My Profile</a>
+                            </li>
+                            <li>
+                                <a href="article.html">Article</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-shopping-cart"></i>
+                            <span class="nav-label">E-Commerce</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="dashboard_ecommerce.html">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_products_list.html">Products list</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_add_product.html">Add new product</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_orders_list.html">Orders list</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_order_details.html">Order details</a>
+                            </li>
+                            <li>
+                                <a href="invoice.html">Invoice</a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_customers.html">Customers</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="sidebar-item-icon ti-calendar"></i>
+                            <span class="nav-label">Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-files"></i>
+                            <span class="nav-label">General Pages</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="search.html">Search</a>
+                            </li>
+                            <li>
+                                <a href="timeline.html">Timeline</a>
+                            </li>
+                            <li>
+                                <a href="timeline_horizontal.html">Horizontal timeline</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-1.html">Pricing Table v1</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-2.html">Pricing Table v2</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-3.html">Pricing Table v3</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-4.html">Pricing Table v4</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-5.html">Pricing Table v5</a>
+                            </li>
+                            <li>
+                                <a href="pricing-table-6.html">Pricing Table v6</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-user"></i>
+                            <span class="nav-label">Custom Pages</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">User Pages</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a href="profile.html">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html">Login v1</a>
+                                    </li>
+                                    <li>
+                                        <a href="login-2.html">Login v2</a>
+                                    </li>
+                                    <li>
+                                        <a href="login-3.html">Login v3</a>
+                                    </li>
+                                    <li>
+                                        <a href="login-4.html">Login v4</a>
+                                    </li>
+                                    <li>
+                                        <a href="login-5.html">Login v5</a>
+                                    </li>
+                                    <li>
+                                        <a href="lockscreen.html">Lockscreen</a>
+                                    </li>
+                                    <li>
+                                        <a href="forgot_password.html">Forgot password</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Error Pages</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a href="error_404.html">404 error</a>
+                                    </li>
+                                    <li>
+                                        <a href="error_404-2.html">404 error v2</a>
+                                    </li>
+                                    <li>
+                                        <a href="error_403.html">403 error</a>
+                                    </li>
+                                    <li>
+                                        <a href="error_500.html">500 error</a>
+                                    </li>
+                                    <li>
+                                        <a href="maintenance.html">Maintenance Mode</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="sidebar-item-icon ti-anchor"></i>
+                            <span class="nav-label">Menu Levels</span><i class="fa fa-angle-left arrow"></i>
+                        </a>
+                        <ul class="nav-2-level collapse">
+                            <li>
+                                <a href="javascript:;">Level 2</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <span class="nav-label">Level 2</span><i class="fa fa-angle-left arrow"></i>
+                                </a>
+                                <ul class="nav-3-level collapse">
+                                    <li>
+                                        <a href="javascript:;">Level 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Level 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <a href=""><i class="ti-announcement"></i></a>
+                    <a href="calendar.html"><i class="ti-calendar"></i></a>
+                    <a href="javascript:;"><i class="ti-comments"></i></a>
+                    <a href="login.html"><i class="ti-power-off"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!-- END SIDEBAR-->
+        <div class="content-wrapper">
+            <!-- START PAGE CONTENT-->
+            <div class="page-content fade-in-up">
+                @RenderBody()
+            </div>
+            <footer class="page-footer" style="padding-bottom:19px;">
+                <div class="font-13" style="margin-left: auto;">2019 © <b>Hello Friends</b> - Save your time, choose the best </div>
+                <div>
+                    <a class="px-3 pl-4" href="" target="_blank">&nbsp; Contact</a>
+                    <a class="px-3" href="" target="_blank">Docs</a>
+                </div>
+                <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
+            </footer>
+        </div>
+        <!-- END PAGE CONTENT-->
+        
+    </div>
+  
+
+
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <div class="preloader-backdrop">
+        <div class="page-preloader">Loading</div>
+    </div>
+
+
+
+
+
+
+    <environment include="Development">
+        <script src="~/LayoutAssets/vendors/jquery/dist/jquery.min.js"></script>
+        <script src="~/LayoutAssets/js/AJAX/ajaxjQueryjquery1.11.3.min.js"></script>
+
+        <script src="~/LayoutAssets/js/AJAX/ajaxjqueryvalidate1.14.0jquery.validate.min.js"></script>
+        <script src="~/LayoutAssets/js/AJAX/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+       
+
+
+        <script src="~/LayoutAssets/vendors/popper.js/dist/umd/popper.min.js"></script>
+        <script src="~/LayoutAssets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/LayoutAssets/vendors/metisMenu/dist/metisMenu.min.js"></script>
+        <script src="~/LayoutAssets/vendors/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="~/LayoutAssets/vendors/toastr/toastr.min.js"></script>
+        <script src="~/LayoutAssets/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/LayoutAssets/js/app.min.js"></script>
+        @*<script src="~/LayoutAssets/js/Validate/additional-methods.js"></script>*@
+        @*<script src="~/LayoutAssets/js/Validate/jquery.validate.js"></script>*@
+
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>*@
+
+
+
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+
+        <script src="~/LayoutAssets/js/AJAX/ajaxjQueryjquery1.11.3.min.js"></script>
+        <script src="~/LayoutAssets/js/AJAX/ajaxjqueryvalidate1.14.0jquery.validate.min.js"></script>
+        <script src="~/LayoutAssets/js/AJAX/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/LayoutAssets/vendors/jquery/dist/jquery.min.js"></script>
+        <script src="~/LayoutAssets/vendors/popper.js/dist/umd/popper.min.js"></script>
+        <script src="~/LayoutAssets/vendors/metisMenu/dist/metisMenu.min.js"></script>
+        <script src="~/LayoutAssets/vendors/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="~/LayoutAssets/vendors/toastr/toastr.min.js"></script>
+        <script src="~/LayoutAssets/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/LayoutAssets/js/app.min.js"></script>
+
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

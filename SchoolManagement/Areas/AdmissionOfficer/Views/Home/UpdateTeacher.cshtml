@@ -1,0 +1,232 @@
+﻿@model SchoolManagement.Areas.AdmissionOfficer.ViewModels.TeacherVm
+<form style="margin-top:0;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-area="Admin" asp-controller="AdmissionOfficer" asp-action="UpdateTeacher" method="post" enctype="multipart/form-data">
+    <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Add New Teacher</h1>
+    <hr style="width:70%;" />
+    <h3 style="text-align:center;font-family:'Century Gothic';">Teacher's Information</h3>
+    <hr style="width:50%;" />
+
+    <div class="row" style="padding:5px;">
+        <input type="hidden" asp-for="TcridVM" />
+        <input type="hidden" asp-for="DocSLVM" />
+        <input type="hidden" asp-for="TcrphotoVM" />
+        <input type="hidden" asp-for="QlSLVM" />
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="teachername">Enter Name:</label>
+                <input type="text" class="form-control" placeholder="Name of Teacher" asp-for="TcrnameVM" />
+                <span asp-validation-for="TcrnameVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="designation">Enter Designation:</label>
+                <input type="text" class="form-control" placeholder="Designation" asp-for="TcrdesigVM" />
+                <span asp-validation-for="TcrdesigVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="contact">Enter Contact No.:</label>
+                <input type="number" class="form-control" placeholder="Phone/Mobile" asp-for="TcrphoneVM" />
+                <span asp-validation-for="TcrphoneVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="e-mail">Enter E-mail Address:</label>
+                <input type="email" class="form-control" placeholder="E-mail" asp-for="TcremailVM" />
+                <span asp-validation-for="TcremailVM" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="dob">Enter Date of Birth:</label>
+                <input type="date" class="form-control" placeholder="DOB" asp-for="TcrdobVM" />
+                <span asp-validation-for="TcrdobVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="gender">Select Gender:</label>
+                <select class="form-control" asp-for="TcrgenderVM">
+                    <option value="Not_Selected">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="TcrgenderVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="bg">Enter Blood Group:</label>
+                <input type="text" class="form-control" placeholder="BG" asp-for="TcrbgVM" />
+                <span asp-validation-for="TcrbgVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="form-group">
+                <label for="nationality">Enter Nationality:</label>
+                <input type="text" class="form-control" placeholder="Nationality" asp-for="TcrnationVM" />
+                <span asp-validation-for="TcrnationVM" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="caddress">Enter Current Address:</label>
+                <textarea class="form-control" cols="5" rows="6" placeholder="Current Address" asp-for="TcrcaddrssVM"></textarea>
+                <span asp-validation-for="TcrcaddrssVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="paddress">Enter Permanent Address:</label>
+                <textarea class="form-control" cols="5" rows="6" placeholder="Permanent Address" asp-for="TcrpaddrssVM"></textarea>
+                <span asp-validation-for="TcrpaddrssVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="photo">Enter a Photo:</label>
+                <input type="file" id="filePhoto" style="cursor:pointer" name="image" asp-for="TcrphotoVM" />
+                @{
+                    var imageSource = "~/images/" + (Model.TcrphotoVM ?? "NoImage.png");
+                }
+                <img id="previewHolder" style="overflow:hidden;width:200px;height:130px" src="@imageSource" asp-append-version="true" />
+
+                <span asp-validation-for="TcrphotoVM" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <hr style="width:80%;" />
+
+    <h3 style="text-align:center;font-family:'Century Gothic';">Teacher's Qualification Details</h3>
+    <hr style="width:50%;" />
+
+    <div class="row" style="padding:10px;">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="sscins">Enter SSC Institution:</label>
+                <input type="text" class="form-control" placeholder="Institution(SSC)" asp-for="TcrqsscinsVM" />
+                <span asp-validation-for="TcrqsscinsVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="sscgpa">Enter SSC GPA:</label>
+                <input type="number" class="form-control" placeholder="GPA(SSC)" asp-for="TcrqsscgradeVM" />
+                <span asp-validation-for="TcrqsscgradeVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="sscyear">Enter passing year of SSC:</label>
+                <input type="number" class="form-control" placeholder="Year(SSC)" asp-for="TcrqsscyearVM" />
+                <span asp-validation-for="TcrqsscyearVM" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="hscins">Enter HSC Institution:</label>
+                <input type="text" class="form-control" placeholder="Institution(HSC)" asp-for="TcrqhscinsVM" />
+                <span asp-validation-for="TcrqhscinsVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="hscgpa">Enter HSC GPA:</label>
+                <input type="number" class="form-control" placeholder="GPA(HSC)" asp-for="TcrqhscgradeVM" />
+                <span asp-validation-for="TcrqhscgradeVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="hscyear">Enter passing year of HSC:</label>
+                <input type="number" class="form-control" placeholder="Year(HSC)" asp-for="TcrqhscyearVM" />
+                <span asp-validation-for="TcrqhscyearVM" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="honsins">Enter Hons Institution:</label>
+                <input type="text" class="form-control" placeholder="Institution(Hons)" asp-for="TcrqhonsinsVM" />
+                <span asp-validation-for="TcrqhonsinsVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="honscgpa">Enter Hons CGPA:</label>
+                <input type="number" class="form-control" placeholder="CGPA(Hons)" asp-for="TcrqhonsgradeVM" />
+                <span asp-validation-for="TcrqhonsgradeVM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="honsyear">Enter passing year of Hons:</label>
+                <input type="number" class="form-control" placeholder="Year(Hons)" asp-for="TcrqhonsyearVM" />
+                <span asp-validation-for="TcrqhonsyearVM" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width:80%;" />
+
+
+    <h3 style="text-align:center;font-family:'Century Gothic';padding:10px;">Submitted Documents:</h3>
+    <hr style="width:50%;" />
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
+            <input type="checkbox" asp-for="TcrdocsubssccrtfctVM" /><label>&nbsp;SSC Certificate</label>
+            <span asp-validation-for="TcrdocsubssccrtfctVM" class="text-danger"></span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <input type="checkbox" asp-for="TcrdocsubhsccrtfctVM" /><label>&nbsp;HSC Certificate</label>
+            <span asp-validation-for="TcrdocsubhsccrtfctVM" class="text-danger"></span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <input type="checkbox" asp-for="TcrdocsubhonscrtfctVM" /><label>&nbsp;Hons Certificate</label>
+            <span asp-validation-for="TcrdocsubhonscrtfctVM" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
+            <input type="checkbox" asp-for="TcrdocsubsscmarkVM" /><label>&nbsp;SSC Marksheet</label>
+            <span asp-validation-for="TcrdocsubsscmarkVM" class="text-danger"></span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <input type="checkbox" asp-for="TcrdocsubhscmarkVM" /><label>&nbsp;HSC Marksheet</label>
+            <span asp-validation-for="TcrdocsubhscmarkVM" class="text-danger"></span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <input type="checkbox" asp-for="TcrdocsubhonsmarkVM" /><label>&nbsp;Hons Marksheet</label>
+            <span asp-validation-for="TcrdocsubhonsmarkVM" class="text-danger"></span>
+        </div>
+    </div>
+    <hr style="width:80%;" />
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="float:right;">
+            <button class="btn btn-success" type="submit" style="float:right;">Update</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script>
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#previewHolder').attr('src', e.target.result);
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#filePhoto").change(function () {
+            readURL(this);
+        });
+    </script>
+}

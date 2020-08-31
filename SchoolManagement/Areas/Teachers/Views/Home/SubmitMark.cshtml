@@ -1,0 +1,92 @@
+﻿
+@model List<SchoolManagement.Areas.Teachers.ViewModels.MarkSubmissionVm>
+
+
+
+<
+    @if (ViewBag.SMS != null)
+    {
+        <div class="alert alert-danger">
+            <strong>@ViewBag.SMS</strong>
+        </div>
+    }
+
+    <form class="form-horizontal" style="margin-top:5%;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-area="Teachers" asp-controller="Home" asp-action="ConfirmSubmission" method="post">
+        <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Mark Submission (@ViewBag.TermName)</h1>
+        <hr style="width:70%;" />
+        <div class="table-responsive">
+
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="float:left;">
+                <p class="h4"> Subject: @ViewBag.Subject</p>
+                <p class="h4">Class: @ViewBag.Class </p>
+                <p class="h4">Section: @ViewBag.Section</p>
+
+            </div>
+
+            <table class="table table-bordered table-striped table-highlight">
+                <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>@ViewBag.TermName Mark</th>
+                        <th>Class Test <input style=" float: none; display: inline-block;width:100px"  type="number" id="NumberAssign"  asp-for="@Model[0].ClassTestPercentage" class="form-control" />% 
+                         <span asp-validation-for="@Model[0].ClassTestPercentage" class="text-danger"></span>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model[i].Sl</td>
+                            <td>@Model[i].StudentId</td>
+                            <td>@Model[i].StudentName</td>
+                            <td>
+                                <input style="width:auto" type="number" class="form-control" asp-for="@Model[i].MarkTerm" id="NumberAssign" />
+                                <span asp-validation-for="@Model[i].MarkTerm" class="text-danger"></span>
+                                <input type="hidden" asp-for="@Model[i].ClassId" />
+                                <input type="hidden" asp-for="@Model[i].SecionId" />
+                                <input type="hidden" asp-for="@Model[i].StudentId" />
+                                <input type="hidden" asp-for="@Model[i].SubjectId" />
+                                <input type="hidden" asp-for="@Model[i].ExamType" />
+                             
+
+                            </td>
+                            <td><input style="width:auto" type="number" class="form-control" asp-for="@Model[i].ClassTest" id="NumberAssign" />
+                            <span asp-validation-for="@Model[i].ClassTest" class="text-danger"></span>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <div class="row" style="padding-right:5px;">
+
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+                <button class="btn btn-primary" type="submit" style="float:right;">Submit</button>
+            </div>
+        </div>
+    </form>
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            //$("#NumberAssign").each(function () {
+            //    $(this).val(" ");
+            //});
+              $( "input[id^='NumberAssign']" ).val( " " );
+        });
+    </script>
+
+ }
+
+
+
+
+
+

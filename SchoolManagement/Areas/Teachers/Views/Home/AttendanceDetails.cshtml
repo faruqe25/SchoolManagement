@@ -1,0 +1,115 @@
+﻿
+@model SchoolManagement.Areas.Teachers.ViewModels.StdntAttndncVm
+@*Erin*@
+
+
+
+@if (ViewBag.SMS != null)
+{
+    <div class="alert alert-danger">
+        <strong>@ViewBag.SMS</strong>
+    </div>
+}
+<form style="margin-top:5%;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-area="Teachers" asp-controller="Home" asp-action="AttendanceScript" method="post">
+    <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Take Attendance</h1>
+    <hr style="width:70%;" />
+
+    <div class="row" style="padding:10px;">
+        @*row 1*@
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>Select Class </label>
+                <select asp-for="clsidVM" asp-items="@ViewBag.Class " id="class" class="form-control">
+                    <option hidden disabled selected> Please Select Class  </option>
+                </select>
+                <span asp-validation-for="clsidVM" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>Select Section </label>
+                <select asp-for="SecId" id="section" class="form-control"></select>
+                <span asp-validation-for="SecId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label for="clsid">Select Subject:</label>
+                <select id="subject" asp-for="sbjctidVM"  class="form-control">
+                    <option hidden disabled selected>Please Select Subject Name</option>
+                </select>
+                <span asp-validation-for="sbjctidVM" class="text-danger"></span>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:10px;">
+        @*row 2*@
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+            <button class="btn btn-primary" type="submit" style="float:right;">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+@section Scripts{
+
+
+    <script type="text/javascript">
+
+        //insert the default value to the Section & Subject
+
+        $(document).ready(function () {
+            var item = "<option hidden disabled selected>Select Class for Section Name</option>";
+            $("#section").html(item);
+            var items = "<option hidden disabled selected>Select Section for Subject Name</option>";
+            $("#subject").html(items);
+        });
+        //Set the section to select list according to class
+        $("#class").change(function () {
+            if ($("#class").val() == 0) {
+                var items = "<option hidden disabled selected>Select Section</option>";
+                $("#section").html(items);
+            }
+            else {
+                var classid = $("#class").val();
+                var url = "/Teachers/Home/VerifySection";
+                $.getJSON(url, { id: classid }, function (data) {
+                    var items = "<option hidden disabled selected> Please Select Section Name</option>";
+                    $("#section").empty();
+                    $.each(data, function (i, sec) {
+                        items += '<option value="' + sec.value + '">' + sec.text + '</option > ';
+                    });
+                    $("#section").html(items);
+                });
+
+            }
+        });
+        //Set the Subject to select list according to section
+        $("#section").change(function () {
+            if ($("#section").val() == 0) {
+                var items = "<option hidden disabled selected>Select Section</option>";
+                $("#subject").html(items);
+            }
+            else {
+                var sectionid = $("#section").val();
+                var url = "/Teachers/Home/VerifySubject";
+                $.getJSON(url, { id: sectionid }, function (data) {
+                    var items = "<option hidden disabled selected> Please Select Subject Name</option>";
+                    $("#subject").empty();
+                    $.each(data, function (i, sub) {
+                        items += '<option value="' + sub.value + '">' + sub.text + '</option > ';
+                    });
+                    $("#subject").html(items);
+                });
+
+            }
+        });
+
+    </script>
+}
+
+

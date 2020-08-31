@@ -1,0 +1,42 @@
+﻿@model SchoolManagement.Areas.Admin.ViewModels.SectionCapacityVm
+
+
+    <form style="margin-top:5%;padding:20px;background-color:ghostwhite; box-shadow:0 5px 15px #686868;border-radius:10px 15px;" asp-area="Admin" asp-controller="Home" asp-action="UpdateSectionCapacity" method="post">
+        <h1 style="text-align:center;font-family:'Century Gothic';font-weight:bold;">Update  Section Capacity</h1>
+        <hr style="width:70%;" />
+
+        <div class="row" style="padding:10px;">
+            @*row 1*@
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label>Select Class:</label>
+                    <select asp-for="ClassId" asp-items="@ViewBag.Class " class="form-control"></select>
+                    <input type="hidden" asp-for="SectionCapacityId" />
+                    <input type="hidden" asp-for="SectionYear" />
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label >Select Section:</label>
+                    <select asp-for="SectionId" asp-items="@ViewBag.Section " class="form-control"></select>
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="seccapacity">Enter Section Capacity:</label>
+                    <input type="number" class="form-control" placeholder="Section Capacity" asp-for="Capacity" />
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="padding:10px;">
+            @*row 2*@
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="float:right;">
+                <button class="btn btn-success" type="submit" style="float:right;">Update</button>
+            </div>
+        </div>
+
+    </form>
